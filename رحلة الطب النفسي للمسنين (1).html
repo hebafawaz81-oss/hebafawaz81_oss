@@ -1,0 +1,806 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>رحلة الطب النفسي للمسنين</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a bound book. Sticky spine bar on top, one chapter "page" at a time, margin-free reading column, tools inside each chapter. */
+:root{
+  --bg:#F2F5F8; --surface:#FFFFFF; --surface-2:#E8EEF3; --ink:#142238; --ink-2:#4A5A70; --line:#CCD7E2;
+  --teal:#1D7C8A; --teal-soft:#D6ECEF; --navy:#16365E; --navy-soft:#DCE6F3;
+  --amber:#A86A00; --amber-soft:#FBEBCB; --red:#B3372F; --red-soft:#F8DDDA; --green:#2B7A4B; --green-soft:#D8EEDF;
+  --on-accent:#FFFFFF; --shadow:0 1px 2px rgba(20,34,56,.06),0 6px 20px rgba(20,34,56,.06);
+  --f-display:'Amiri','Noto Naskh Arabic','Traditional Arabic',serif;
+  --f-body:'IBM Plex Sans Arabic','Segoe UI',Tahoma,'Noto Sans Arabic',sans-serif;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D1726; --surface:#14233A; --surface-2:#1B2E4A; --ink:#E7EEF7; --ink-2:#A3B3C8; --line:#2B4160;
+  --teal:#4FC0CF; --teal-soft:#15404A; --navy:#9CC2F0; --navy-soft:#1C3354;
+  --amber:#F0B347; --amber-soft:#3A2D12; --red:#F08A82; --red-soft:#40201E; --green:#6DCB93; --green-soft:#163A27;
+  --on-accent:#0D1726; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1726; --surface:#14233A; --surface-2:#1B2E4A; --ink:#E7EEF7; --ink-2:#A3B3C8; --line:#2B4160;
+  --teal:#4FC0CF; --teal-soft:#15404A; --navy:#9CC2F0; --navy-soft:#1C3354;
+  --amber:#F0B347; --amber-soft:#3A2D12; --red:#F08A82; --red-soft:#40201E; --green:#6DCB93; --green-soft:#163A27;
+  --on-accent:#0D1726; --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{direction:rtl;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.85 var(--f-body);direction:rtl;
+  padding-inline:var(--gutter) max(16px,env(safe-area-inset-right,0px));-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--surface);z-index:30}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:var(--f-body);display:inline-block}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Spine bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);
+  background:var(--surface);border-block-end:1px solid var(--line)}
+.bar-in{max-width:60rem;margin:0 auto;display:flex;align-items:center;gap:.75rem;padding-block:.55rem}
+.bar-title{font:700 1rem/1.3 var(--f-display);font-size:1.25rem;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-count{font-size:.85rem;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar-btn{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:.3rem .9rem;font-size:.9rem;font-weight:500}
+.bar-btn:hover{border-color:var(--teal)}
+.prog{height:3px;background:var(--surface-2);margin-inline:calc(-1*var(--gutter))}
+.prog>i{display:block;height:100%;width:0;background:var(--teal);transition:width .35s ease}
+
+/* Contents drawer */
+.toc{position:fixed;inset:0;z-index:40;background:rgba(10,18,30,.55);display:flex;justify-content:flex-start;padding-top:env(safe-area-inset-top,0px)}
+.toc-sheet{background:var(--surface);width:min(26rem,92vw);height:100%;overflow:auto;padding:1.25rem 1.1rem 2rem;box-shadow:var(--shadow)}
+.toc-head{display:flex;align-items:center;justify-content:space-between;margin-block-end:.75rem}
+.toc-head h2{margin:0;font:700 1.5rem var(--f-display)}
+.toc-list{list-style:none;margin:0;padding:0;display:grid;gap:.25rem}
+.toc-list a{display:flex;gap:.7rem;align-items:baseline;padding:.55rem .7rem;border-radius:10px;color:var(--ink);text-decoration:none;font-size:.98rem;line-height:1.5}
+.toc-list a:hover{background:var(--surface-2)}
+.toc-list a[aria-current="page"]{background:var(--teal-soft)}
+.toc-n{font-variant-numeric:tabular-nums;color:var(--ink-2);min-width:1.6rem;font-size:.85rem}
+.toc-list .seen::after{content:"✓";margin-inline-start:auto;color:var(--green);font-size:.85rem}
+
+/* Page */
+main{max-width:52rem;margin:0 auto;padding-block:2rem 3.5rem}
+.chapter{display:none;animation:rise .35s ease both}
+.chapter.on{display:block}
+@keyframes rise{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.kicker{font-size:.85rem;font-weight:600;letter-spacing:.06em;color:var(--teal);margin:0 0 .35rem}
+h1,h2.title{font-family:var(--f-display);font-weight:700;line-height:1.35;margin:0 0 .75rem;text-wrap:balance}
+h2.title{font-size:clamp(1.9rem,5vw,2.6rem)}
+.lead{font-size:1.15rem;color:var(--ink-2);margin:0 0 1.75rem;max-width:42rem}
+h3{font:700 1.2rem/1.5 var(--f-body);margin:0 0 .5rem}
+p{margin:0 0 1rem}
+.foot-nav{display:flex;justify-content:space-between;gap:.75rem;flex-wrap:wrap;margin-block-start:2.5rem;padding-block-start:1.25rem;border-block-start:1px solid var(--line)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:.65rem 1.1rem;font-weight:600;min-height:44px}
+.btn:hover{border-color:var(--teal)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:var(--on-accent)}
+.btn[disabled]{opacity:.4;cursor:default}
+
+/* Cover */
+.cover{display:grid;gap:1.5rem;padding-block:1rem}
+.cover h1{font-size:clamp(2.4rem,8vw,4rem);margin:0}
+.cover .en{font:500 1.15rem var(--f-body);color:var(--ink-2);direction:ltr;text-align:start;unicode-bidi:isolate}
+.credits{display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.95rem;color:var(--ink-2)}
+.credits b{display:block;color:var(--ink);font-weight:600}
+.journey{display:flex;flex-wrap:wrap;gap:.6rem;align-items:stretch}
+.journey .stop{flex:1 1 11rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:.9rem 1rem;box-shadow:var(--shadow)}
+.journey .stop small{display:block;color:var(--ink-2);direction:ltr;text-align:start;font-size:.85rem}
+.journey .arr{align-self:center;color:var(--teal);font-size:1.4rem}
+.cover-svg{width:100%;max-width:30rem;height:auto;justify-self:center}
+
+/* Cards and callouts */
+.module{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:1.25rem;box-shadow:var(--shadow);margin-block:1.25rem}
+.module>h3:first-child{margin-block-start:0}
+.grid2,.grid3{display:grid;gap:1rem}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.grid3{grid-template-columns:repeat(auto-fit,minmax(13rem,1fr))}
+.cell{background:var(--surface-2);border-radius:12px;padding:1rem;min-width:0}
+.cell h3{font-size:1.05rem}
+.cell p:last-child{margin:0}
+.callout{border-radius:14px;padding:1rem 1.15rem;margin-block:1.25rem;min-width:0}
+.callout .tag{display:inline-block;font-size:.8rem;font-weight:700;border-radius:999px;padding:.1rem .7rem;margin-block-end:.4rem}
+.callout p:last-child{margin:0}
+.pearl{background:var(--amber-soft)}.pearl .tag{background:var(--amber);color:var(--on-accent)}
+.warn{background:var(--red-soft)}.warn .tag{background:var(--red);color:var(--on-accent)}
+.good{background:var(--green-soft)}.good .tag{background:var(--green);color:var(--on-accent)}
+.note{background:var(--navy-soft)}.note .tag{background:var(--navy);color:var(--on-accent)}
+.chip{display:inline-block;border-radius:999px;padding:.05rem .65rem;font-size:.85rem;background:var(--teal-soft);margin:.1rem .1rem}
+.small{font-size:.9rem;color:var(--ink-2)}
+ul.tight{margin:.25rem 0 0;padding-inline-start:1.2rem}
+ul.tight li{margin-block-end:.35rem}
+
+/* Segmented control, option buttons */
+.seg{display:flex;flex-wrap:wrap;gap:.4rem;margin-block-end:1rem}
+.seg button,.opt{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:.55rem .95rem;font-weight:500;min-height:44px;text-align:start;line-height:1.5}
+.seg button[aria-selected="true"],.opt[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-accent)}
+.seg button:hover:not([aria-selected="true"]),.opt:hover:not([aria-pressed="true"]){border-color:var(--teal)}
+.panel[hidden],.toc[hidden]{display:none}
+.en-s{direction:ltr;unicode-bidi:isolate;display:inline-block;font-size:.88em;color:var(--ink-2)}
+
+/* Reveal (diagnostic question) */
+.qcase{background:var(--surface);border:2px solid var(--amber);border-radius:16px;padding:1.1rem 1.25rem;margin-block:1.5rem}
+.qcase .q-label{font-weight:700;color:var(--amber);margin:0 0 .3rem}
+.qcase .answer{margin-block-start:.9rem;padding:.8rem 1rem;border-radius:12px;background:var(--green-soft)}
+.qcase .answer[hidden]{display:none}
+.qcase .btn{margin-block-start:.4rem}
+
+/* Accordion */
+details.acc{background:var(--surface-2);border-radius:12px;margin-block-end:.6rem}
+details.acc summary{cursor:pointer;list-style:none;padding:.8rem 1rem;font-weight:600;display:flex;gap:.6rem;align-items:center;min-height:44px}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::before{content:"◂";color:var(--teal);transition:transform .2s}
+details.acc[open] summary::before{transform:rotate(-90deg)}
+details.acc .acc-body{padding:0 1rem 1rem}
+
+/* Tables */
+.tscroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+table.matrix{border-collapse:collapse;width:100%;min-width:34rem;background:var(--surface)}
+.matrix th,.matrix td{padding:.7rem .8rem;text-align:start;border-block-end:1px solid var(--line);vertical-align:top;line-height:1.6}
+.matrix thead th{background:var(--navy);color:#fff;font-weight:600}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .matrix thead th{background:#1F4170;color:#E7EEF7}}
+:root[data-theme="dark"] .matrix thead th{background:#1F4170;color:#E7EEF7}
+.matrix tbody th{background:var(--surface-2);font-weight:600;white-space:nowrap}
+.matrix td.hl,.matrix th.hl{background:var(--teal-soft)}
+.matrix thead th.hl{background:var(--teal);color:var(--on-accent)}
+
+/* SVG helpers */
+svg text{font-family:var(--f-body);fill:var(--ink)}
+svg .t2{fill:var(--ink-2)}
+.fig{width:100%;height:auto;display:block}
+
+/* Steps (staircase) */
+.stairs{display:grid;gap:.6rem}
+.stair{border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.stair button{all:unset;box-sizing:border-box;display:flex;gap:.8rem;align-items:center;width:100%;padding:.85rem 1rem;cursor:pointer;min-height:44px;font-weight:600}
+.stair button:focus-visible{outline:3px solid var(--teal);outline-offset:-3px}
+.stair .num{flex:none;width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;background:var(--teal);color:var(--on-accent);font-weight:700;font-variant-numeric:tabular-nums}
+.stair .body{padding:0 1rem 1rem 1rem;display:none}
+.stair.open .body{display:block}
+.stair.open{border-color:var(--teal)}
+.stair:nth-child(2){margin-inline-start:1.25rem}.stair:nth-child(3){margin-inline-start:2.5rem}
+@media (max-width:30rem){.stair:nth-child(2){margin-inline-start:.6rem}.stair:nth-child(3){margin-inline-start:1.2rem}}
+
+/* Checklist (LBD) */
+.checks{display:grid;gap:.5rem}
+.checks label{display:flex;gap:.7rem;align-items:flex-start;background:var(--surface-2);border-radius:12px;padding:.7rem .9rem;cursor:pointer}
+.checks input{width:1.25rem;height:1.25rem;margin-block-start:.35rem;accent-color:var(--teal);flex:none}
+.meter{height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-block:.5rem}
+.meter>i{display:block;height:100%;width:0;background:var(--teal);transition:width .3s}
+
+/* Quiz */
+.quiz-q{font:700 1.2rem/1.7 var(--f-body);margin-block:.5rem 1rem}
+.choices{display:grid;gap:.5rem}
+.choice{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:.75rem 1rem;text-align:start;min-height:44px;line-height:1.6}
+.choice:hover:not([disabled]){border-color:var(--teal)}
+.choice.right{background:var(--green-soft);border-color:var(--green)}
+.choice.wrong{background:var(--red-soft);border-color:var(--red)}
+.quiz-exp{margin-block-start:1rem}
+.score{font:700 3rem/1.2 var(--f-display);color:var(--teal)}
+.fine{font-size:.85rem;color:var(--ink-2);margin-block-start:2rem;border-block-start:1px solid var(--line);padding-block-start:1rem}
+
+/* Letters, donut, classify, mind map */
+.letters{direction:ltr;flex-wrap:nowrap;gap:.3rem}
+.letters button{flex:1 1 0;min-width:0;padding:.5rem 0;text-align:center;font:700 1.2rem var(--f-body);direction:ltr}
+.donut-wrap{display:grid;grid-template-columns:minmax(0,15rem) 1fr;gap:1.25rem;align-items:center}
+.donut-wrap svg{width:100%;height:auto;display:block}
+.donut-wrap path{cursor:pointer;stroke:var(--surface);stroke-width:2;transition:opacity .15s}
+.donut-wrap path:focus-visible{outline:none;stroke:var(--ink);stroke-width:3}
+.donut-info{min-width:0}
+.donut-info .big{font:700 2.4rem/1.2 var(--f-display);color:var(--teal)}
+@media (max-width:34rem){.donut-wrap{grid-template-columns:1fr}}
+.cls{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:space-between;padding-block:.7rem;border-block-end:1px solid var(--line)}
+.cls p{margin:0;flex:1 1 16rem}
+.cls .pick{display:flex;gap:.4rem;flex-wrap:wrap}
+.cls .fb{flex:1 0 100%;font-size:.92rem;font-weight:600}
+.cls .fb.ok{color:var(--green)}.cls .fb.no{color:var(--red)}
+.mm-center{display:grid;justify-items:center;text-align:center;background:var(--teal);color:var(--on-accent);border-radius:16px;padding:1rem;margin-block-end:1rem;font-size:1.2rem}
+.mm-link{display:block;width:100%;text-align:start;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;margin-block-start:.4rem;min-height:44px}
+.mm-link:hover{border-color:var(--teal)}
+.closing{margin:2rem 0 0;padding:1.25rem 1.5rem;background:var(--surface);border:1px solid var(--line);border-radius:16px;font:400 1.5rem/1.8 var(--f-display);text-wrap:balance}
+</style>
+<div id="app" lang="ar" dir="rtl">
+<header class="bar">
+  <div class="bar-in">
+    <button class="bar-btn" id="tocBtn" aria-expanded="false" aria-controls="toc">الفهرس</button>
+    <span class="bar-title">الطب النفسي للمسنين</span>
+    <span class="bar-count" id="count"></span>
+  </div>
+  <div class="prog"><i id="progBar"></i></div>
+</header>
+
+<div class="toc" id="toc" hidden>
+  <nav class="toc-sheet" aria-label="فهرس الكتاب">
+    <div class="toc-head"><h2>الفهرس</h2><button class="bar-btn" id="tocClose">إغلاق</button></div>
+    <ol class="toc-list" id="tocList"></ol>
+  </nav>
+</div>
+
+<main id="book">
+
+<!-- 0 · Cover -->
+<section class="chapter" id="ch0" data-title="الغلاف">
+  <div class="cover">
+    <p class="kicker">كتاب تفاعلي مستند إلى محاضرة د. عمر عادل</p>
+    <h1>الطب النفسي للمسنين</h1>
+    <div class="en">Geriatric Psychiatry</div>
+    <p class="lead">عندما يلتقي التقدم في العمر بالصحة النفسية: رحلة إكلينيكية من ملاحظة الأعراض إلى التمييز التشخيصي، ثم إلى التدبير الدوائي والسلوكي.</p>
+    <div class="journey" aria-label="مسار الكتاب">
+      <div class="stop"><b>التقييم المعرفي</b><small>Cognitive Assessment</small></div>
+      <span class="arr" aria-hidden="true">◂</span>
+      <div class="stop"><b>التشخيص التفريقي</b><small>Differential Diagnosis</small></div>
+      <span class="arr" aria-hidden="true">◂</span>
+      <div class="stop"><b>التدبير الدوائي والسلوكي</b><small>Management</small></div>
+    </div>
+    <div class="credits">
+      <div><b>المحاضر</b>د. عمر عادل</div>
+      <div><b>تصميم الشرائح الأصلية</b>الاختصاصية النفسية هبة عبد الفتاح</div>
+    </div>
+    <div><button class="btn primary" data-go="1">ابدأ القراءة</button></div>
+  </div>
+</section>
+
+<!-- 1 · Six domains -->
+<section class="chapter" id="ch1" data-title="الوظائف الطبيعية: المجالات الستة">
+  <p class="kicker">الفصل 1 · التقييم المعرفي</p>
+  <h2 class="title">لاكتشاف الخلل، اعرف أولًا الوظائف الطبيعية</h2>
+  <p class="lead">يقسّم الفحص المعرفي الوظائف الدماغية إلى ستة مجالات. اضغط على كل مجال لترى ما الذي يقيسه وأين ستقابله لاحقًا في الكتاب.</p>
+  <div class="module" data-tabs>
+    <div class="seg" role="tablist" aria-label="المجالات المعرفية الستة">
+      <button role="tab" data-tab="d1" aria-selected="true">1 · الانتباه المعقد</button>
+      <button role="tab" data-tab="d2" aria-selected="false">2 · الوظائف التنفيذية</button>
+      <button role="tab" data-tab="d3" aria-selected="false">3 · التعلم والذاكرة</button>
+      <button role="tab" data-tab="d4" aria-selected="false">4 · اللغة</button>
+      <button role="tab" data-tab="d5" aria-selected="false">5 · الإدراكية الحركية</button>
+      <button role="tab" data-tab="d6" aria-selected="false">6 · الإدراك الاجتماعي</button>
+    </div>
+    <div class="panel" data-panel="d1"><h3>الانتباه المعقد <span class="en-s">Complex Attention</span></h3><p>سرعة المعالجة <span class="en-s">Processing speed</span> والانتباه المزدوج.</p><p class="small">يتصدّر الصورة في الهذيان، وفي الخرف الوعائي تتأثر سرعة المعالجة مبكرًا.</p></div>
+    <div class="panel" data-panel="d2" hidden><h3>الوظائف التنفيذية <span class="en-s">Executive Function</span></h3><p>التخطيط، واتخاذ القرار، وتثبيط الاندفاع <span class="en-s">Impulse inhibition</span>.</p><p class="small">أول ما يتأثر في الخرف الوعائي (الفصل 4)، وتأتي ثالثًا في تسلسل ألزهايمر (الفصل 3).</p></div>
+    <div class="panel" data-panel="d3" hidden><h3>التعلم والذاكرة <span class="en-s">Learning &amp; Memory</span></h3><p>تعلّم الجديد واسترجاع القديم. تعتمد على دائرة بابيز <span class="en-s">Papez Circuit</span>.</p><p class="small">أول ما يضربه داء ألزهايمر (الفصل 3).</p></div>
+    <div class="panel" data-panel="d4" hidden><h3>اللغة <span class="en-s">Language</span></h3><p>إيجاد الكلمات <span class="en-s">Word finding</span>، والطلاقة، والقراءة.</p><p class="small">يفقدها المريض تدريجيًا في النوع الصدغي من الخرف الجبهي الصدغي (الفصل 4).</p></div>
+    <div class="panel" data-panel="d5" hidden><h3>الوظائف الإدراكية الحركية <span class="en-s">Perceptual-Motor</span></h3><p>التناسق البصري المكاني. تعطّلها يؤدي إلى الحُبسة الحركية <span class="en-s">Apraxia</span>.</p></div>
+    <div class="panel" data-panel="d6" hidden><h3>الإدراك الاجتماعي <span class="en-s">Social Cognition</span></h3><p>التعاطف <span class="en-s">Empathy</span>، وتمييز الانفعالات، والسلوك اللائق.</p><p class="small">يتدهور مبكرًا في النوع الجبهي من الخرف الجبهي الصدغي (الفصل 4).</p></div>
+  </div>
+  <div class="callout pearl"><span class="tag">نصيحة إكلينيكية</span><p>أي مجال يتأثر أولًا؟ الإجابة عن هذا السؤال تحدد نوع الخرف.</p></div>
+</section>
+
+<!-- 2 · Normal aging vs disease -->
+<section class="chapter" id="ch2" data-title="أين ينتهي التقدم الطبيعي ويبدأ المرض؟">
+  <p class="kicker">الفصل 2 · التقييم المعرفي</p>
+  <h2 class="title">أين ينتهي التقدم الطبيعي في العمر ويبدأ المرض؟</h2>
+  <p class="lead">خطوتان تفصلان بين التراجع البسيط والخرف. جرّب المسار بنفسك.</p>
+  <div class="module">
+    <h3>الخطوة 1: شكوى ذاتية <span class="en-s">Subjective Concern</span> + تقييم موضوعي <span class="en-s">Objective Testing</span></h3>
+    <p>يبدأ المسار حين يشكو المريض أو من حوله من تراجع، ويؤكد الاختبار الموضوعي وجوده.</p>
+    <h3>الخطوة 2: الاستقلالية في أنشطة الحياة اليومية <span class="en-s">ADLs</span></h3>
+    <p class="small">اختر حالة الاستقلالية لترى التشخيص:</p>
+    <div class="seg" id="adlSeg">
+      <button class="opt" data-adl="keep" aria-pressed="false">محفوظة <span class="en-s">Preserved</span></button>
+      <button class="opt" data-adl="lost" aria-pressed="false">معطلة <span class="en-s">Impaired</span></button>
+    </div>
+    <div id="adlOut" class="callout note" aria-live="polite"><span class="tag">النتيجة</span><p>اختر إحدى الحالتين.</p></div>
+  </div>
+  <div class="module">
+    <h3>مقياس MMSE من 30 درجة</h3>
+    <p class="small">اضغط على أي جزء من الحلقة لترى ما يقيسه.</p>
+    <div id="donut" class="donut-wrap"></div>
+    <div class="callout warn"><span class="tag">حد فاصل</span><p>النتيجة تحت 24 تشير غالبًا إلى <span class="en-s">Major NCD</span>.</p></div>
+  </div>
+  <div class="qcase">
+    <p class="q-label">سؤال تشخيصي</p>
+    <p>مريض سجّل 26/30 في اختبار MMSE، لكنه ما زال يدير شؤونه المالية بنفسه. ما هو التشخيص؟</p>
+    <button class="btn" data-reveal>أظهر الإجابة</button>
+    <div class="answer" hidden><b>تراجع معرفي بسيط <span class="en-s">Mild NCD</span></b><br>الدرجة قريبة من الطبيعي والاستقلالية محفوظة، فلا يصل الحال إلى الخرف.</div>
+  </div>
+</section>
+
+<!-- 3 · Alzheimer -->
+<section class="chapter" id="ch3" data-title="داء ألزهايمر">
+  <p class="kicker">الفصل 3 · التشخيص التفريقي</p>
+  <h2 class="title">داء ألزهايمر: اللص المتسلل</h2>
+  <p class="lead">الأكثر شيوعًا بين أسباب الخرف، بنسبة 50–90% من الحالات.</p>
+  <div class="callout note"><span class="tag">النمط الإكلينيكي</span><p>بداية خفية وتدهور تدريجي <span class="en-s">Insidious &amp; Gradual</span>. من الأعراض النفسية، اللامبالاة <span class="en-s">Apathy</span> هي العرض الأبرز، يليها الاكتئاب والتهيج.</p></div>
+  <div class="module">
+    <h3>تسلسل التدهور</h3>
+    <p class="small">افتح كل درجة بالترتيب:</p>
+    <div class="stairs">
+      <div class="stair"><button aria-expanded="false"><span class="num">1</span>يضرب الذاكرة والتعلم أولًا</button><div class="body">دائرة بابيز <span class="en-s">Papez circuit</span>. هذه أول مرحلة في التسلسل.</div></div>
+      <div class="stair"><button aria-expanded="false"><span class="num">2</span>ثم اللغة</button><div class="body">يظهر اضطراب اللغة <span class="en-s">Language</span> بعد الذاكرة.</div></div>
+      <div class="stair"><button aria-expanded="false"><span class="num">3</span>ثم الوظائف التنفيذية</button><div class="body">تأتي الوظائف التنفيذية <span class="en-s">Executive</span> في المرحلة الأخيرة من هذا التسلسل.</div></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="cell"><h3>خارج الخلايا</h3><p>تراكم لويحات أميلويد بيتا 42 <span class="en-s">Amyloid β 42</span>، بسبب جينات <span class="en-s">APP</span> و<span class="en-s">Presenilin</span> ونقص التصفية <span class="en-s">ApoE4</span>.</p></div>
+    <div class="cell"><h3>داخل الخلايا</h3><p>تشابكات بروتين تاو <span class="en-s">Tau</span>.</p></div>
+  </div>
+  <div class="module">
+    <h3>درجات اليقين التشخيصي</h3>
+    <p class="small">من الأقل إلى الأعلى يقينًا:</p>
+    <div class="journey">
+      <div class="stop"><b>محتمل إكلينيكيًا</b><small>Possible</small></div><span class="arr" aria-hidden="true">◂</span>
+      <div class="stop"><b>مرجّح بالمؤشرات الحيوية</b><small>Probable</small></div><span class="arr" aria-hidden="true">◂</span>
+      <div class="stop"><b>مؤكد بالتشريح</b><small>Definite</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · VaD / FTD -->
+<section class="chapter" id="ch4" data-title="الخرف الوعائي والجبهي الصدغي">
+  <p class="kicker">الفصل 4 · التشخيص التفريقي</p>
+  <h2 class="title">عندما تسبق التغيرات السلوكية أو الحركية فقدان الذاكرة</h2>
+  <p class="lead">ليس كل خرف يبدأ بالنسيان. اختر النوع لتقرأ ملامحه.</p>
+  <div class="module" data-tabs>
+    <div class="seg" role="tablist" aria-label="نوع الخرف">
+      <button role="tab" data-tab="vad" aria-selected="true">الخرف الوعائي <span class="en-s" style="color:inherit">Vascular</span></button>
+      <button role="tab" data-tab="ftd" aria-selected="false">الخرف الجبهي الصدغي <span class="en-s" style="color:inherit">FTD</span></button>
+    </div>
+    <div class="panel" data-panel="vad">
+      <ul class="tight">
+        <li>ثاني الأسباب شيوعًا (20%).</li>
+        <li>تدهور سلمي <span class="en-s">Step-wise decline</span>.</li>
+        <li>يبدأ بضرب <b>الوظائف التنفيذية</b> وسرعة المعالجة.</li>
+        <li>ترافقه علامات عصبية بؤرية وسجل جلطات سابقة. <b>الذاكرة</b> محفوظة في البداية.</li>
+      </ul>
+      <svg class="fig" viewBox="0 0 420 170" role="img" aria-label="رسم توضيحي: تدهور سلمي مقابل تدهور تدريجي">
+        <line x1="40" y1="10" x2="40" y2="140" style="stroke:var(--line)" stroke-width="2"/>
+        <line x1="40" y1="140" x2="410" y2="140" style="stroke:var(--line)" stroke-width="2"/>
+        <path d="M40 30 H120 V55 H180 V85 H250 V110 H320 V125 H400" fill="none" style="stroke:var(--teal)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M40 30 C150 40 250 80 400 128" fill="none" style="stroke:var(--amber)" stroke-width="2.5" stroke-dasharray="6 5"/>
+        <text x="405" y="158" text-anchor="end" class="t2" font-size="12">الزمن</text>
+        <text x="46" y="14" font-size="12" class="t2">الوظيفة المعرفية</text>
+        <text x="330" y="102" font-size="12" style="fill:var(--teal);font-weight:700">وعائي: سلمي</text>
+        <text x="240" y="60" font-size="12" style="fill:var(--amber);font-weight:700">تدريجي: مقارنة</text>
+      </svg>
+      <p class="small">الخط المتقطع للمقارنة فقط: صورة عامة للتدهور التدريجي، وليست قياسًا حقيقيًا.</p>
+    </div>
+    <div class="panel" data-panel="ftd" hidden>
+      <ul class="tight">
+        <li>يصيب المرضى في سن مبكرة (الأربعينيات والخمسينيات).</li>
+        <li><b>النوع الجبهي <span class="en-s">Frontal Variant</span>:</b> تدهور السلوك، وفقدان اللياقة الاجتماعية، والاندفاع <span class="en-s">Social Cognition</span>.</li>
+        <li><b>النوع الصدغي <span class="en-s">Temporal Variant</span>:</b> فقدان تدريجي للغة <span class="en-s">Primary Progressive Aphasia</span>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Synucleinopathies -->
+<section class="chapter" id="ch5" data-title="عائلة السينيوكلينوباثي">
+  <p class="kicker">الفصل 5 · التشخيص التفريقي</p>
+  <h2 class="title">نفس البروتين، لكن تسلسل زمني مختلف</h2>
+  <p class="lead">خرف أجسام ليوي وخرف باركنسون ينتميان إلى عائلة واحدة، يجمعهما بروتين ألفا سينيوكلين <span class="en-s">Alpha-Synuclein</span>.</p>
+  <div class="grid2">
+    <div class="cell"><h3>مسار باركنسون <span class="en-s">Parkinson's Disease Dementia</span></h3><ul class="tight"><li>تبدأ الأعراض الحركية أولًا.</li><li>بعد أكثر من عام (غالبًا متأخرًا) يظهر التدهور المعرفي.</li></ul></div>
+    <div class="cell"><h3>مسار أجسام ليوي <span class="en-s">Lewy Body Dementia, LBD</span></h3><p>خمس سمات رئيسية. علّم ما تجده في الحالة:</p></div>
+  </div>
+  <div class="module">
+    <div class="checks" id="lbd">
+      <label><input type="checkbox"><span><b>تذبذب في الانتباه والإدراك</b> <span class="en-s">Fluctuating cognition</span></span></label>
+      <label><input type="checkbox"><span><b>هلاوس بصرية واضحة ومكتملة</b> (يرى حيوانات أو أشخاصًا)</span></label>
+      <label><input type="checkbox"><span><b>باركنسونية تلقائية</b> <span class="en-s">Spontaneous Parkinsonism</span></span></label>
+      <label><input type="checkbox"><span><b>اضطراب سلوك نوم حركة العين السريعة</b> <span class="en-s">RBD</span></span></label>
+      <label><input type="checkbox"><span><b>حساسية شديدة لمضادات الذهان</b> <span class="en-s">Severe sensitivity</span></span></label>
+    </div>
+    <div class="meter" aria-hidden="true"><i id="lbdBar"></i></div>
+    <p class="small" id="lbdTxt">السمات المتحققة: 0 من 5</p>
+  </div>
+  <div class="qcase">
+    <p class="q-label">سؤال تشخيصي</p>
+    <p>مريض خرف بدأ يرى حيوانات بوضوح في الغرفة، ثم ظهرت عليه رعشة حركية. ماذا تتجنب إعطاءه بشدة؟</p>
+    <button class="btn" data-reveal>أظهر الإجابة</button>
+    <div class="answer" hidden><b>مضادات الذهان النمطية <span class="en-s">Typical Antipsychotics</span></b><br>لخطر حدوث <span class="en-s">NMS/EPS</span>.</div>
+  </div>
+</section>
+
+<!-- 6 · Reversible causes -->
+<section class="chapter" id="ch6" data-title="الأسباب القابلة للعكس">
+  <p class="kicker">الفصل 6 · التشخيص التفريقي</p>
+  <h2 class="title">ليس كل تراجع معرفي دائمًا</h2>
+  <p class="lead">ابحث دائمًا عن الأسباب القابلة للعكس. اختصارها <span class="ltr"><b>DEMENTIA</b></span>، اضغط على كل حرف.</p>
+  <div class="module" data-tabs>
+    <div class="seg letters" role="tablist" aria-label="حروف DEMENTIA">
+      <button role="tab" data-tab="r1" aria-selected="true">D</button>
+      <button role="tab" data-tab="r2" aria-selected="false">E</button>
+      <button role="tab" data-tab="r3" aria-selected="false">M</button>
+      <button role="tab" data-tab="r4" aria-selected="false">E</button>
+      <button role="tab" data-tab="r5" aria-selected="false">N</button>
+      <button role="tab" data-tab="r6" aria-selected="false">T</button>
+      <button role="tab" data-tab="r7" aria-selected="false">I</button>
+      <button role="tab" data-tab="r8" aria-selected="false">A</button>
+    </div>
+    <div class="panel" data-panel="r1"><h3>الأدوية <span class="en-s">Drugs</span></h3><p>مضادات الكولين والمنومات.</p></div>
+    <div class="panel" data-panel="r2" hidden><h3>المشاعر <span class="en-s">Emotional</span></h3><p>الاكتئاب، أو ما يُسمى الخرف الكاذب (الفصل 7).</p></div>
+    <div class="panel" data-panel="r3" hidden><h3>الأيض <span class="en-s">Metabolic</span></h3><p>الفشل الكلوي والكبدي.</p></div>
+    <div class="panel" data-panel="r4" hidden><h3>الغدد <span class="en-s">Endocrine</span></h3><p>قصور الغدة الدرقية <span class="en-s">Hypothyroidism</span>.</p></div>
+    <div class="panel" data-panel="r5" hidden><h3>التغذية <span class="en-s">Nutritional</span> / استسقاء الدماغ سوي الضغط <span class="en-s">NPH</span></h3><p>نقص التغذية (<span class="en-s">B12, Thiamine</span>). وفي استسقاء الدماغ سوي الضغط ثلاثية: المشي، والتبول، والإدراك.</p></div>
+    <div class="panel" data-panel="r6" hidden><h3>الأورام والإصابات <span class="en-s">Tumor / Trauma</span></h3><p>الأورام وإصابات الرأس.</p></div>
+    <div class="panel" data-panel="r7" hidden><h3>العدوى <span class="en-s">Infection</span></h3><p><span class="en-s">HIV, Syphilis</span>.</p></div>
+    <div class="panel" data-panel="r8" hidden><h3>الكحول والمناعة الذاتية <span class="en-s">Alcohol / Autoimmune</span></h3><p>الكحول وأمراض المناعة الذاتية.</p></div>
+  </div>
+</section>
+
+<!-- 7 · Pseudo-dementia -->
+<section class="chapter" id="ch7" data-title="الخرف الكاذب: المقلّد الأعظم">
+  <p class="kicker">الفصل 7 · التشخيص التفريقي</p>
+  <h2 class="title">المقلّد الأعظم: حين يتخفى الاكتئاب في ثوب الخرف</h2>
+  <p class="lead">الاكتئاب أو الخرف الكاذب <span class="en-s">Pseudo-Dementia</span> يشبه الخرف الحقيقي <span class="en-s">True Dementia</span>. صنّف كل عبارة، وسترى الفارق.</p>
+  <div class="module" id="cls">
+    <div class="cls" data-ans="true"><p>المريض يبذل جهدًا لإخفاء النسيان.</p></div>
+    <div class="cls" data-ans="pseudo"><p>الإجابة المتكررة «لا أعرف» مع غياب الجهد للإجابة.</p></div>
+    <div class="cls" data-ans="true"><p>يلجأ إلى التأليف لسد الفجوات <span class="en-s">Confabulation</span>.</p></div>
+    <div class="cls" data-ans="pseudo"><p>يبدو المريض منزعجًا بشدة من ضعف ذاكرته.</p></div>
+    <div class="cls" data-ans="true"><p>استجاباته الخاطئة متكررة، لكنه يبدو واثقًا أو غير مبالٍ.</p></div>
+    <div class="cls" data-ans="pseudo"><p>الشكوى المعرفية أو الجسدية <span class="en-s">Somatic</span> تأتي من المريض نفسه وبشكل مبالغ فيه.</p></div>
+    <p class="small" id="clsScore" aria-live="polite"></p>
+  </div>
+  <div class="callout pearl"><span class="tag">نصيحة إكلينيكية</span><p>احذر! 50% من حالات الخرف الكاذب قد تتطور إلى خرف حقيقي <span class="en-s">True Dementia</span> خلال عام واحد (كما ورد في المحاضرة).</p></div>
+</section>
+
+<!-- 8 · Delirium -->
+<section class="chapter" id="ch8" data-title="الهذيان: حالة طوارئ طبية">
+  <p class="kicker">الفصل 8 · التشخيص التفريقي</p>
+  <h2 class="title">الهذيان: فشل دماغي حاد وحالة طوارئ طبية</h2>
+  <p class="lead">الخرف ينحدر ببطء. الهذيان يتذبذب بشدة، ويسوء ليلًا.</p>
+  <div class="module">
+    <svg class="fig" viewBox="0 0 480 230" role="img" aria-label="رسم توضيحي: الوظيفة المعرفية عبر النهار والليل في الهذيان مقابل الخرف">
+      <rect x="40" y="10" width="110" height="170" style="fill:var(--surface-2)"/>
+      <rect x="150" y="10" width="110" height="170" style="fill:var(--navy-soft)"/>
+      <rect x="260" y="10" width="110" height="170" style="fill:var(--surface-2)"/>
+      <rect x="370" y="10" width="100" height="170" style="fill:var(--navy-soft)"/>
+      <line x1="40" y1="180" x2="470" y2="180" style="stroke:var(--line)" stroke-width="2"/>
+      <text x="95" y="198" text-anchor="middle" font-size="12" class="t2">نهار</text>
+      <text x="205" y="198" text-anchor="middle" font-size="12" class="t2">ليل</text>
+      <text x="315" y="198" text-anchor="middle" font-size="12" class="t2">نهار</text>
+      <text x="420" y="198" text-anchor="middle" font-size="12" class="t2">ليل</text>
+      <text x="470" y="218" text-anchor="end" font-size="12" class="t2">الزمن</text>
+      <text x="46" y="26" font-size="12" class="t2">الوظيفة المعرفية</text>
+      <path d="M40 40 C150 52 280 80 470 128" fill="none" style="stroke:var(--navy)" stroke-width="3"/>
+      <path d="M40 42 L60 36 L72 70 L88 30 L104 62 L120 38 L136 72 L150 60 L170 100 L186 66 L205 130 L222 80 L240 96 L262 52 L282 40 L296 80 L312 38 L330 78 L350 44 L372 90 L392 140 L408 100 L424 150 L440 108 L458 142" fill="none" style="stroke:var(--amber)" stroke-width="2.6" stroke-linejoin="round"/>
+      <text x="60" y="165" font-size="12" style="fill:var(--amber);font-weight:700">الهذيان</text>
+      <text x="300" y="160" font-size="12" style="fill:var(--navy);font-weight:700">الخرف: تدهور تدريجي بطيء</text>
+      <text x="410" y="26" text-anchor="middle" font-size="11" style="fill:var(--red);font-weight:700">Sun-downing</text>
+    </svg>
+    <p class="small">رسم توضيحي للفكرة، وليس قياسًا لمريض حقيقي.</p>
+  </div>
+  <div class="grid3">
+    <div class="cell"><h3>الخصائص</h3><p>بداية حادة جدًا (ساعات أو أيام). يضرب أساسًا الانتباه المعقد <span class="en-s">Complex Attention</span> والتوجيه.</p></div>
+    <div class="cell"><h3>الأنواع</h3><p>مفرط النشاط <span class="en-s">Hyperactive</span>، وخامل <span class="en-s">Hypoactive</span>، ومختلط <span class="en-s">Mixed</span> وهو الأكثر شيوعًا.</p></div>
+    <div class="cell"><h3>المسببات</h3><p>متعددة العوامل: أدوية، وإمساك، وعدوى.</p></div>
+  </div>
+  <div class="callout warn"><span class="tag">القاعدة الذهبية</span><p>ابحث دائمًا عن العدوى الخفية <span class="en-s">Hidden Infections</span> مثل التهابات المسالك البولية <span class="en-s">UTI</span> أو الصدر لدى كبار السن. يُخطأ في تشخيص 66% من الحالات.</p></div>
+</section>
+
+<!-- 9 · Matrix -->
+<section class="chapter" id="ch9" data-title="المصفوفة التشخيصية">
+  <p class="kicker">الفصل 9 · التشخيص التفريقي</p>
+  <h2 class="title">التمييز بين الهذيان والخرف والاكتئاب</h2>
+  <p class="lead">اختر حالة لتبرز عمودها في الجدول.</p>
+  <div class="seg" id="colPick">
+    <button class="opt" data-col="2" aria-pressed="false">الهذيان</button>
+    <button class="opt" data-col="3" aria-pressed="false">الخرف</button>
+    <button class="opt" data-col="4" aria-pressed="false">الاكتئاب</button>
+  </div>
+  <div class="tscroll"><table class="matrix" id="matrix">
+    <thead><tr><th>أوجه المقارنة</th><th>الهذيان <span class="en-s" style="color:inherit">Delirium</span></th><th>الخرف <span class="en-s" style="color:inherit">Dementia</span></th><th>الاكتئاب <span class="en-s" style="color:inherit">Depression</span></th></tr></thead>
+    <tbody>
+      <tr><th>البداية</th><td>حادة (خلال ساعات)</td><td>تدريجية (أشهر وسنوات)</td><td>شبه حادة (أسابيع)</td></tr>
+      <tr><th>المسار</th><td>متذبذب جدًا</td><td>تدهور مستمر</td><td>ثابت غالبًا، أسوأ صباحًا</td></tr>
+      <tr><th>الوعي</th><td>مضطرب</td><td>صافٍ</td><td>صافٍ</td></tr>
+      <tr><th>الانتباه</th><td>ضعيف جدًا بشكل عام</td><td>طبيعي في البداية، يتأثر لاحقًا</td><td>ضعيف بسبب نقص الدافع</td></tr>
+      <tr><th>الهلاوس</th><td>شائعة (بصرية غالبًا)</td><td>نادرة (إلا في <span class="en-s">LBD</span>)</td><td>نادرة (متوافقة مع المزاج)</td></tr>
+    </tbody>
+  </table></div>
+  <h3 style="margin-block-start:1.5rem">طبّق ما رأيت</h3>
+  <details class="acc"><summary>بدأت الأعراض خلال ساعات، والوعي مضطرب، مع هلاوس بصرية. ما التشخيص الأرجح؟</summary><div class="acc-body"><b>الهذيان.</b> وابحث فورًا عن عدوى خفية أو دواء مسبب.</div></details>
+  <details class="acc"><summary>تدهور مستمر على مدى أشهر وسنوات، والوعي صافٍ، والانتباه طبيعي في البداية. ما التشخيص الأرجح؟</summary><div class="acc-body"><b>الخرف.</b></div></details>
+  <details class="acc"><summary>بدأت الأعراض خلال أسابيع، وهي أسوأ صباحًا، والانتباه ضعيف لنقص الدافع. ما التشخيص الأرجح؟</summary><div class="acc-body"><b>الاكتئاب.</b> وتذكّر الخرف الكاذب (الفصل 7).</div></details>
+</section>
+
+<!-- 10 · BPSD -->
+<section class="chapter" id="ch10" data-title="التدبير العلاجي للأعراض السلوكية والنفسية">
+  <p class="kicker">الفصل 10 · التدبير</p>
+  <h2 class="title">الأعراض السلوكية والنفسية <span class="ltr">BPSD</span>: كيف نعالج دون أن نؤذي؟</h2>
+  <p class="lead">اصعد الدرج بالترتيب. لا تقفز إلى الدواء قبل أن تنتهي من الخطوة الأولى.</p>
+  <div class="stairs">
+    <div class="stair open"><button aria-expanded="true"><span class="num">1</span>التدخل غير الدوائي أولًا <span class="en-s">Non-Pharm First</span></button><div class="body"><ul class="tight"><li>إعادة التوجيه المستمر <span class="en-s">Reorientation</span>.</li><li>علاج الألم أو العدوى الكامنة.</li><li>تأمين البيئة <span class="en-s">Safety planning</span>.</li></ul></div></div>
+    <div class="stair"><button aria-expanded="false"><span class="num">2</span>القيود الدوائية <span class="en-s">Pharmacological</span></button><div class="body">مضادات الذهان <span class="en-s">Antipsychotics</span> تزيد من خطر السكتات الدماغية والوفيات لدى المسنين. تُستخدم في أضيق الحدود.</div></div>
+    <div class="stair"><button aria-expanded="false"><span class="num">!</span>استثناء هام جدًا: ذهان LBD أو باركنسون</button><div class="body">يُمنع تمامًا استخدام مضادات الذهان النمطية. الخيار الوحيد المتاح هو <span class="en-s">Quetiapine</span> أو <span class="en-s">Clozapine</span> لتقليل خطر <span class="en-s">EPS</span>.</div></div>
+  </div>
+</section>
+
+<!-- 11 · Sleep -->
+<section class="chapter" id="ch11" data-title="اضطرابات النوم لدى المسنين">
+  <p class="kicker">الفصل 11 · التدبير</p>
+  <h2 class="title">اضطرابات النوم: الهندسة المعمارية للنوم تتغير</h2>
+  <p class="lead">مع التقدم في العمر يتغير بناء النوم نفسه، وليس مجرد عدد الساعات.</p>
+  <div class="module">
+    <h3>خط زمني لمعمارية النوم <span class="en-s">Sleep Architecture Timeline</span></h3>
+    <svg class="fig" viewBox="0 0 480 190" role="img" aria-label="رسم توضيحي لخط زمني للنوم لدى المسن">
+      <line x1="30" y1="130" x2="460" y2="130" style="stroke:var(--line)" stroke-width="2"/>
+      <path d="M30 130 H80 C90 130 92 60 104 60 C116 60 118 130 130 130 H170 C176 130 177 100 183 100 C189 100 190 130 196 130 C202 130 203 85 211 85 C219 85 220 130 228 130 C234 130 235 100 241 100 C247 100 248 130 254 130 C260 130 261 80 269 80 C277 80 278 130 286 130 C292 130 293 95 299 95 C305 95 306 130 312 130 C318 130 320 78 328 78 C336 78 338 130 346 130 H372" fill="none" style="stroke:var(--teal)" stroke-width="3"/>
+      <path d="M372 130 H440" style="stroke:var(--teal)" stroke-width="3" stroke-dasharray="5 5" fill="none"/>
+      <text x="104" y="42" text-anchor="middle" font-size="12" style="font-weight:700">بداية مبكرة لـ REM</text>
+      <text x="270" y="55" text-anchor="middle" font-size="12" style="font-weight:700">استيقاظ متكرر</text>
+      <text x="410" y="112" text-anchor="middle" font-size="12" style="font-weight:700">قلة الساعات الإجمالية</text>
+      <text x="30" y="156" font-size="12" class="t2">بداية الليل</text>
+      <text x="460" y="156" text-anchor="end" font-size="12" class="t2">الصباح</text>
+    </svg>
+    <p class="small">رسم توضيحي للفكرة، وليس تسجيلًا حقيقيًا لنوم مريض.</p>
+  </div>
+  <div class="grid2">
+    <div class="callout warn"><span class="tag">ممنوع</span>
+      <ul class="tight"><li><b>البنزوديازيبينات</b> <span class="en-s">Benzodiazepines</span> وعقاقير <span class="en-s">Z-drugs</span>: تسبب ضعفًا إدراكيًا، واعتمادية، وسقوطًا متكررًا <span class="en-s">Falls</span>.</li><li><b>مضادات الذهان للتنويم</b>: بسبب المخاطر القلبية والوعائية.</li></ul></div>
+    <div class="callout good"><span class="tag">العلاج المفضل</span><p><b>ترازودون</b> <span class="en-s">Trazodone</span> هو الخيار الأمثل.</p></div>
+  </div>
+</section>
+
+<!-- 12 · Psychopharmacology -->
+<section class="chapter" id="ch12" data-title="مبادئ الأدوية النفسية للمسنين">
+  <p class="kicker">الفصل 12 · التدبير</p>
+  <h2 class="title">مبادئ علم الأدوية النفسية للمسنين</h2>
+  <div class="callout pearl"><span class="tag">القاعدة الذهبية</span><p><b>ابدأ بجرعة منخفضة، وارفعها ببطء</b> <span class="en-s">Start Low, Go Slow</span>. الدماغ المسن لا يستجيب كالدماغ الشاب.</p></div>
+  <div class="grid3">
+    <div class="cell"><h3>أدوية الخرف</h3><ul class="tight"><li><b>مثبطات أستيل كولين إستريز</b> (<span class="en-s">Donepezil</span>) للمراحل المبكرة. انتبه للأعراض الهضمية.</li><li><b>ميمانتين</b> (<span class="en-s">Memantine</span>): مضاد <span class="en-s">NMDA</span> يعدّل زيادة الجلوتامات بشكل صحي، للمراحل المتوسطة والشديدة.</li></ul></div>
+    <div class="cell"><h3>مضادات الاكتئاب</h3><p>يُفضل <span class="en-s">SSRIs</span> مثل السيرترالين، لكن يجب مراقبة خطر نقص الصوديوم <span class="en-s">Hyponatremia</span> بشدة.</p></div>
+    <div class="cell"><h3>العبء المضاد للكولين</h3><p>تجنب الأدوية القوية كمضادات الكولين (مثل <span class="en-s">TCAs</span>) لتفادي التسبب في الهذيان.</p></div>
+  </div>
+</section>
+
+<!-- 13 · Caregiver -->
+<section class="chapter" id="ch13" data-title="المريض الخفي: عبء مقدم الرعاية">
+  <p class="kicker">الفصل 13 · التدبير</p>
+  <h2 class="title">المريض الخفي: عبء مقدم الرعاية <span class="en-s">Caregiver Burden</span></h2>
+  <div class="grid2">
+    <div class="cell"><h3>الواقع الإكلينيكي</h3><p>الطبيب يعالج وحدة الأسرة بأكملها، وليس المريض فقط.</p><p>أكبر عامل خطر للإيذاء الجسدي أو اللفظي للمسن <span class="en-s">Elder Abuse</span> هو احتراق مقدم الرعاية <span class="en-s">Burnout</span>، وغالبًا ما يكون من الأقارب من الدرجة الأولى.</p></div>
+    <div class="cell"><h3>نصيحة للطبيب</h3><p>لا تزد الجرعات الدوائية وتخدّر المريض <span class="en-s">Overmedication</span> فقط لإراحة العائلة.</p><p>ضع توقعات واقعية: الأدوية لا تغني عن التمريض الجيد، والتأهيل، وتسهيل البيئة المحيطة.</p></div>
+  </div>
+  <div class="qcase">
+    <p class="q-label">موقف للتفكير</p>
+    <p>أسرة منهكة تطلب منك زيادة الجرعة حتى ينام المريض أغلب اليوم. كيف تتصرف؟</p>
+    <button class="btn" data-reveal>أظهر الإجابة</button>
+    <div class="answer" hidden>لا تزد الجرعات لمجرد إراحة العائلة. وضّح للأسرة أن الدواء لا يغني عن التمريض الجيد والتأهيل وتسهيل البيئة، وانظر إلى الأسرة كلها كمرضى محتملين: ادعم مقدم الرعاية، فاحتراقه أكبر عوامل خطر الإيذاء.</div>
+  </div>
+</section>
+
+<!-- 14 · Mind map -->
+<section class="chapter" id="ch14" data-title="خريطة التوليف الختامية">
+  <p class="kicker">الفصل 14 · الخلاصة</p>
+  <h2 class="title">خريطة التوليف الختامية</h2>
+  <p class="lead">كل فرع من فروع المريض المسن مرتبط بفصل. اضغط على أي عنصر للعودة إليه.</p>
+  <div class="mm">
+    <div class="mm-center"><b>المريض المسن</b><span class="en-s" style="color:inherit">The Geriatric Patient</span></div>
+    <div class="grid2">
+      <div class="cell"><h3>التقييم <span class="en-s">Assessment</span></h3><button class="mm-link" data-go="1">المجالات الستة</button><button class="mm-link" data-go="2">اختبار <span class="ltr">MMSE</span></button><button class="mm-link" data-go="6">استبعاد الأسباب القابلة للعكس</button></div>
+      <div class="cell"><h3>الأعراض <span class="en-s">Symptoms</span></h3><button class="mm-link" data-go="3">معرفية <span class="en-s">Cognitive</span></button><button class="mm-link" data-go="10">نفسية وسلوكية <span class="en-s">BPSD</span></button></div>
+      <div class="cell"><h3>التشخيص التفريقي <span class="en-s">Differential</span></h3><button class="mm-link" data-go="8">الهذيان</button><button class="mm-link" data-go="3">الخرف</button><button class="mm-link" data-go="7">الاكتئاب</button></div>
+      <div class="cell"><h3>التدبير <span class="en-s">Management</span></h3><button class="mm-link" data-go="12"><span class="ltr">Start Low, Go Slow</span></button><button class="mm-link" data-go="10">التدخل غير الدوائي أولًا</button><button class="mm-link" data-go="13">دعم مقدم الرعاية</button></div>
+    </div>
+  </div>
+  <blockquote class="closing">الطب النفسي للمسنين ليس مجرد علاج للنسيان، بل هو حفظ لكرامة الإنسان وفهم دقيق لتقاطع الجسد مع العقل.</blockquote>
+</section>
+
+<!-- 15 · Quiz -->
+<section class="chapter" id="ch15" data-title="اختبر نفسك">
+  <p class="kicker">الفصل 15 · مراجعة</p>
+  <h2 class="title">اختبر نفسك</h2>
+  <p class="lead">عشرة أسئلة من مادة الكتاب. بعد كل إجابة يظهر التفسير.</p>
+  <div class="module" id="quiz" aria-live="polite"></div>
+  <p class="fine">هذا الكتاب مادة تعليمية مستندة إلى شرائح محاضرة د. عمر عادل (تصميم الاختصاصية النفسية هبة عبد الفتاح)، ولا يغني عن التقدير الإكلينيكي ولا عن المراجع المعتمدة.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var chapters=[].slice.call(document.querySelectorAll('.chapter'));
+  var N=chapters.length-1, cur=-1;
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  function store(get,k,v){try{if(get)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}return null}
+  var seen={};try{seen=JSON.parse(store(true,'geri-seen')||'{}')||{}}catch(e){seen={}}
+
+  /* Contents */
+  var tocList=$('#tocList');
+  chapters.forEach(function(c,i){
+    var li=document.createElement('li'),a=document.createElement('a');
+    a.href='#ch'+i;a.dataset.i=i;
+    a.innerHTML='<span class="toc-n">'+(i?i:'·')+'</span><span>'+c.dataset.title+'</span>';
+    li.appendChild(a);tocList.appendChild(li);
+  });
+  var toc=$('#toc'),tocBtn=$('#tocBtn');
+  function openToc(o){toc.hidden=!o;tocBtn.setAttribute('aria-expanded',o?'true':'false');if(o){var a=$('[aria-current="page"]',toc);if(a)a.scrollIntoView({block:'center'})}}
+  tocBtn.addEventListener('click',function(){openToc(toc.hidden)});
+  $('#tocClose').addEventListener('click',function(){openToc(false)});
+  toc.addEventListener('click',function(e){if(e.target===toc||e.target.closest('a'))openToc(false)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!toc.hidden)openToc(false)});
+
+  /* Footer navigation in each chapter */
+  chapters.forEach(function(c,i){
+    if(i===0)return;
+    var nav=document.createElement('div');nav.className='foot-nav';
+    var prev='<button class="btn" data-go="'+(i-1)+'">← '+(i===1?'الغلاف':'الفصل السابق')+'</button>';
+    var next=i<N?'<button class="btn primary" data-go="'+(i+1)+'">الفصل التالي →</button>':'<button class="btn" data-go="0">العودة إلى الغلاف</button>';
+    nav.innerHTML=prev+next;c.appendChild(nav);
+  });
+
+  function go(n){location.hash='ch'+n}
+  function show(n){
+    if(isNaN(n)||n<0||n>N)n=0;
+    chapters.forEach(function(c,i){c.classList.toggle('on',i===n)});
+    cur=n;
+    $('#count').textContent=n?(n+' / '+N):'الغلاف';
+    $('#progBar').style.width=(n/N*100)+'%';
+    $$('a',tocList).forEach(function(a){
+      var i=+a.dataset.i;
+      if(i===n)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+      a.classList.toggle('seen',!!seen[i]&&i!==n);
+    });
+    seen[n]=1;store(false,'geri-seen',JSON.stringify(seen));
+    window.scrollTo(0,0);
+  }
+  function fromHash(){var m=/^#ch(\d+)$/.exec(location.hash);show(m?+m[1]:0)}
+  window.addEventListener('hashchange',fromHash);
+
+  document.addEventListener('click',function(e){
+    var g=e.target.closest('[data-go]');
+    if(g){go(+g.dataset.go);return}
+    var tab=e.target.closest('[data-tab]');
+    if(tab){
+      var box=tab.closest('[data-tabs]');
+      $$('[data-tab]',box).forEach(function(b){b.setAttribute('aria-selected',b===tab?'true':'false')});
+      $$('[data-panel]',box).forEach(function(p){p.hidden=p.dataset.panel!==tab.dataset.tab});
+      return;
+    }
+    var st=e.target.closest('.stair>button');
+    if(st){var s=st.parentNode,o=!s.classList.contains('open');s.classList.toggle('open',o);st.setAttribute('aria-expanded',o?'true':'false');return}
+    var rv=e.target.closest('[data-reveal]');
+    if(rv){var a=rv.parentNode.querySelector('.answer');a.hidden=!a.hidden;rv.textContent=a.hidden?'أظهر الإجابة':'أخفِ الإجابة';return}
+  });
+
+  /* ADL decision tool */
+  var adl={
+    keep:'<span class="tag">النتيجة</span><p><b>تراجع بسيط <span class="en-s">Mild NCD</span></b><br>الاستقلالية في أنشطة الحياة اليومية محفوظة.</p>',
+    lost:'<span class="tag">النتيجة</span><p><b>خرف <span class="en-s">Major NCD</span></b><br>الاستقلالية معطلة، بشرط استبعاد الهذيان أولًا.</p>'};
+  $$('#adlSeg [data-adl]').forEach(function(b){b.addEventListener('click',function(){
+    $$('#adlSeg [data-adl]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+    $('#adlOut').innerHTML=adl[b.dataset.adl];
+    $('#adlOut').className='callout '+(b.dataset.adl==='keep'?'good':'warn');
+  })});
+
+  /* LBD checklist */
+  var lbd=$('#lbd');
+  lbd.addEventListener('change',function(){
+    var n=$$('input:checked',lbd).length;
+    $('#lbdBar').style.width=(n/5*100)+'%';
+    $('#lbdTxt').textContent='السمات المتحققة: '+n+' من 5';
+  });
+
+  /* Classify true vs pseudo dementia */
+  var done=0,right=0,items=$$('#cls .cls');
+  items.forEach(function(it){
+    var pick=document.createElement('div');pick.className='pick';
+    pick.innerHTML='<button class="opt" data-v="true">خرف حقيقي</button><button class="opt" data-v="pseudo">خرف كاذب</button>';
+    it.appendChild(pick);
+    pick.addEventListener('click',function(e){
+      var b=e.target.closest('button');if(!b||it.dataset.d)return;
+      it.dataset.d='1';done++;
+      var ok=b.dataset.v===it.dataset.ans;if(ok)right++;
+      $$('button',pick).forEach(function(x){x.disabled=true;if(x===b)x.setAttribute('aria-pressed','true')});
+      var fb=document.createElement('div');fb.className='fb '+(ok?'ok':'no');
+      fb.textContent=ok?'صحيح':('الإجابة الصحيحة: '+(it.dataset.ans==='true'?'خرف حقيقي':'خرف كاذب'));
+      it.appendChild(fb);
+      if(done===items.length)$('#clsScore').textContent='النتيجة: '+right+' من '+items.length;
+    });
+  });
+
+  /* Matrix column highlight */
+  var mx=$('#matrix');
+  $$('#colPick [data-col]').forEach(function(b){b.addEventListener('click',function(){
+    var on=b.getAttribute('aria-pressed')!=='true';
+    $$('#colPick [data-col]').forEach(function(x){x.setAttribute('aria-pressed','false')});
+    $$('#matrix .hl').forEach(function(c){c.classList.remove('hl')});
+    if(on){b.setAttribute('aria-pressed','true');
+      $$('#matrix tr').forEach(function(r){r.children[+b.dataset.col-1].classList.add('hl')})}
+  })});
+
+  fromHash();
+})();
+</script>
+
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  var NS='http://www.w3.org/2000/svg';
+
+  /* MMSE donut */
+  var segs=[
+    {k:'التوجه',en:'Orientation',v:10,c:'var(--navy)'},
+    {k:'التسجيل',en:'Registration',v:3,c:'var(--teal)'},
+    {k:'الانتباه',en:'Attention',v:5,c:'var(--amber)'},
+    {k:'الاسترجاع',en:'Recall',v:3,c:'var(--green)'},
+    {k:'اللغة والحركة',en:'Language/Motor',v:9,c:'var(--red)'}];
+  var wrap=$('#donut');
+  if(wrap){
+    var svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox','0 0 200 200');
+    svg.setAttribute('role','group');svg.setAttribute('aria-label','توزيع درجات MMSE');
+    wrap.appendChild(svg);
+    var info=document.createElement('div');info.className='donut-info';wrap.appendChild(info);
+    var cx=100,cy=100,R=92,r=56,a0=-Math.PI/2,paths=[];
+    function pt(rad,a){return (cx+rad*Math.cos(a)).toFixed(2)+' '+(cy+rad*Math.sin(a)).toFixed(2)}
+    segs.forEach(function(s,i){
+      var a1=a0+s.v/30*Math.PI*2,large=(a1-a0)>Math.PI?1:0;
+      var d='M'+pt(R,a0)+' A'+R+' '+R+' 0 '+large+' 1 '+pt(R,a1)+' L'+pt(r,a1)+' A'+r+' '+r+' 0 '+large+' 0 '+pt(r,a0)+' Z';
+      var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.style.fill=s.c;
+      p.setAttribute('tabindex','0');p.setAttribute('role','button');
+      p.setAttribute('aria-label',s.k+': '+s.v+' درجات');
+      p.addEventListener('click',function(){pick(i)});
+      p.addEventListener('mouseenter',function(){pick(i)});
+      p.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(i)}});
+      svg.appendChild(p);paths.push(p);a0=a1;
+    });
+    var t1=document.createElementNS(NS,'text');t1.setAttribute('x',cx);t1.setAttribute('y',cy-2);t1.setAttribute('text-anchor','middle');t1.setAttribute('font-size','20');t1.setAttribute('font-weight','700');t1.textContent='MMSE';
+    var t2=document.createElementNS(NS,'text');t2.setAttribute('x',cx);t2.setAttribute('y',cy+18);t2.setAttribute('text-anchor','middle');t2.setAttribute('font-size','13');t2.setAttribute('class','t2');t2.textContent='30 درجة';
+    svg.appendChild(t1);svg.appendChild(t2);
+    function pick(i){
+      paths.forEach(function(p,j){p.style.opacity=j===i?1:.45});
+      var s=segs[i];
+      $('.big',info).textContent=s.v;
+      $('.nm',info).innerHTML=s.k+' <span class="en-s">'+s.en+'</span>';
+      $$('button',info).forEach(function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+    }
+    info.innerHTML='<div class="big"></div><p class="nm"></p><div class="seg" style="margin:0"></div>';
+    segs.forEach(function(s,i){
+      var b=document.createElement('button');b.className='opt';b.textContent=s.k+' · '+s.v;
+      b.addEventListener('click',function(){pick(i)});$('.seg',info).appendChild(b);
+    });
+    pick(0);
+  }
+
+  /* Quiz */
+  var Q=[
+    {q:'مريض سجّل 26/30 في MMSE ويدير شؤونه المالية بنفسه. ما التشخيص؟',o:['خرف (Major NCD)','تراجع معرفي بسيط (Mild NCD)','هذيان','لا يمكن الحكم'],a:1,ch:2,e:'الاستقلالية في أنشطة الحياة اليومية محفوظة، فالتشخيص تراجع معرفي بسيط.'},
+    {q:'أي مجال يضربه داء ألزهايمر أولًا؟',o:['اللغة','الوظائف التنفيذية','الإدراك الاجتماعي','التعلم والذاكرة'],a:3,ch:3,e:'يبدأ بالذاكرة والتعلم (دائرة بابيز)، ثم اللغة، ثم الوظائف التنفيذية.'},
+    {q:'تدهور سلمي مع علامات عصبية بؤرية وسجل جلطات سابقة، والذاكرة محفوظة في البداية. ما الأرجح؟',o:['ألزهايمر','خرف أجسام ليوي','الخرف الوعائي','الخرف الجبهي الصدغي'],a:2,ch:4,e:'التدهور السلمي مع العلامات البؤرية وسجل الجلطات يشير إلى الخرف الوعائي.'},
+    {q:'مريض في الخمسينيات تدهور سلوكه وفقد اللياقة الاجتماعية وصار مندفعًا. ما الأرجح؟',o:['الخرف الجبهي الصدغي (النوع الجبهي)','الخرف الوعائي','ألزهايمر','خرف باركنسون'],a:0,ch:4,e:'سن مبكرة مع تغيرات سلوكية واندفاع هي ملامح النوع الجبهي.'},
+    {q:'مريض خرف يرى حيوانات بوضوح في الغرفة ثم ظهرت عليه رعشة حركية. ماذا تتجنب إعطاءه بشدة؟',o:['Quetiapine','مضادات الذهان النمطية','Donepezil','Trazodone'],a:1,ch:5,e:'الحالة تشير إلى خرف أجسام ليوي، وفيه حساسية شديدة لمضادات الذهان النمطية بخطر NMS/EPS.'},
+    {q:'ما الثلاثية المميزة لاستسقاء الدماغ سوي الضغط؟',o:['الصداع والقيء والحمى','الرعشة والتصلب وبطء الحركة','المشي والتبول والإدراك','الكلام والرؤية والسمع'],a:2,ch:6,e:'المشي والتبول والإدراك. وهو من الأسباب القابلة للعكس.'},
+    {q:'ما القاعدة الذهبية عند الاشتباه في الهذيان لدى كبير السن؟',o:['رفع جرعة مضاد الذهان فورًا','البحث عن العدوى الخفية كالتهاب المسالك البولية أو الصدر','البدء بمثبط أستيل كولين إستريز','طمأنة الأسرة والمراقبة فقط'],a:1,ch:8,e:'الهذيان حالة طوارئ طبية، والعدوى الخفية سبب شائع يُغفل.'},
+    {q:'أي عبارة صحيحة عن علاج الأرق لدى المسنين؟',o:['البنزوديازيبينات سريعة المفعول وتُفضّل','مضادات الذهان مناسبة للتنويم','الترازودون هو الخيار الأمثل، والبنزوديازيبينات وعقاقير Z ممنوعة','لا يوجد علاج دوائي'],a:2,ch:11,e:'البنزوديازيبينات وعقاقير Z تسبب ضعفًا إدراكيًا واعتمادية وسقوطًا، ومضادات الذهان للتنويم ممنوعة لمخاطرها القلبية والوعائية.'},
+    {q:'عند وصف SSRI لمسن، ما الذي يجب مراقبته بشدة؟',o:['ارتفاع السكر','نقص الكالسيوم','ارتفاع البوتاسيوم','نقص الصوديوم (Hyponatremia)'],a:3,ch:12,e:'تُفضَّل SSRIs مثل السيرترالين، مع مراقبة نقص الصوديوم بشدة.'},
+    {q:'ما أكبر عامل خطر للإيذاء الجسدي أو اللفظي للمسن؟',o:['نقص الدخل','احتراق مقدم الرعاية','تعدد الأدوية','العزلة المكانية'],a:1,ch:13,e:'احتراق مقدم الرعاية، وغالبًا ما يكون من الأقارب من الدرجة الأولى.'}];
+  var box=$('#quiz'),i=0,score=0,missed=[];
+  function best(v){try{if(v!=null){var b=+localStorage.getItem('geri-best')||0;if(v>b)localStorage.setItem('geri-best',v);return Math.max(b,v)}return +localStorage.getItem('geri-best')||0}catch(e){return v||0}}
+  function ask(){
+    var q=Q[i];
+    box.innerHTML='<p class="small">سؤال '+(i+1)+' من '+Q.length+'</p><p class="quiz-q"></p><div class="choices"></div><div class="quiz-exp"></div>';
+    $('.quiz-q',box).textContent=q.q;
+    var ch=$('.choices',box);
+    q.o.forEach(function(t,k){
+      var b=document.createElement('button');b.className='choice';b.textContent=t;
+      b.addEventListener('click',function(){
+        var kids=$$('.choice',ch);
+        kids.forEach(function(x,j){x.disabled=true;if(j===q.a)x.classList.add('right')});
+        var ok=k===q.a;if(ok)score++;else{b.classList.add('wrong');missed.push(q.ch)}
+        var ex=$('.quiz-exp',box);
+        ex.innerHTML='<div class="callout '+(ok?'good':'warn')+'"><span class="tag">'+(ok?'إجابة صحيحة':'إجابة غير صحيحة')+'</span><p></p></div><div class="foot-nav" style="margin-block-start:1rem;border:0;padding:0"></div>';
+        $('p',ex).textContent=q.e;
+        var fn=$('.foot-nav',ex);
+        fn.innerHTML='<button class="btn" data-go="'+q.ch+'">راجع الفصل '+q.ch+'</button><button class="btn primary" id="qNext">'+(i<Q.length-1?'السؤال التالي':'عرض النتيجة')+'</button>';
+        $('#qNext').addEventListener('click',function(){i++;if(i<Q.length)ask();else fin()});
+      });
+      ch.appendChild(b);
+    });
+  }
+  function fin(){
+    var b=best(score),uniq=missed.filter(function(c,k){return missed.indexOf(c)===k});
+    box.innerHTML='<p class="small">النتيجة النهائية</p><div class="score">'+score+' / '+Q.length+'</div><p class="small">أفضل نتيجة لك على هذا الجهاز: '+b+' / '+Q.length+'</p>'+
+      (uniq.length?'<p>فصول تستحق مراجعة:</p><div class="seg" id="rev"></div>':'<p>أجبت عن كل الأسئلة بشكل صحيح.</p>')+
+      '<button class="btn primary" id="qAgain">أعد الاختبار</button>';
+    uniq.forEach(function(c){var x=document.createElement('button');x.className='opt';x.dataset.go=c;x.textContent='الفصل '+c;$('#rev').appendChild(x)});
+    $('#qAgain').addEventListener('click',function(){i=0;score=0;missed=[];ask()});
+  }
+  if(box)ask();
+})();
+</script>
+
+</body></html>
